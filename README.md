@@ -4,3 +4,18 @@ Go doesn't currently have a well documented or easy to use IoC container. As I n
 
 ## Getting Started
 
+```go
+// Instantiate an object.
+obj := "foobar"
+
+// Register into the container.
+btioc.Register("foo_object", obj)
+
+// Retrieve the object.
+res, _ := btioc.Retrieve("foo_object")
+
+// Prints "what the foobar?!".
+fmt.Printf("What the %s?!", res)
+```
+
+For a more detailed example (or how you can use structs with the container), check out the [example file](https://github.com/bt/btioc/blob/master/example/main.go).

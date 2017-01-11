@@ -24,6 +24,10 @@ func New() *Ioc {
 }
 
 // Returns true if the specified component is registered.
+func IsRegistered(name string) bool {
+	return i.IsRegistered(name)
+}
+
 func (ioc *Ioc) IsRegistered(name string) bool {
 	if _, ok := ioc.container[name]; ok {
 		return true
@@ -32,6 +36,10 @@ func (ioc *Ioc) IsRegistered(name string) bool {
 }
 
 // Registers a new object in the container.
+func Register(name string, obj interface{}) error {
+	return i.Register(name, obj)
+}
+
 func (ioc *Ioc) Register(name string, obj interface{}) error {
 	// Check if already registered
 	if ioc.IsRegistered(name) {
@@ -43,9 +51,13 @@ func (ioc *Ioc) Register(name string, obj interface{}) error {
 }
 
 // Returns the specified instance if it's in the container, otherwise return an error.
-func (ioc *Ioc) Retrieve(name string) (error, interface{}) {
+func Retrieve(name string) (interface{}, error) {
+	return i.Retrieve(name)
+}
+
+func (ioc *Ioc) Retrieve(name string) (interface{}, error) {
 	if !ioc.IsRegistered(name) {
-		return fmt.Errorf("'%s' is not registered in IoC container.", name), nil
+		return nil, fmt.Errorf("'%s' is not registered in IoC container.", name)
 	}
-	return nil, ioc.container[name]
+	return ioc.container[name], nil
 }

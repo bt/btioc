@@ -20,8 +20,8 @@ func TestIocRetrieve(t *testing.T) {
 	obj := "foobar"
 
 	ioc.Register("foo", obj)
-	err, res := ioc.Retrieve("foo")
+	res, err := ioc.Retrieve("foo")
 
-	assert.Nil(t, err)
 	assert.Equal(t, "foobar", res)
+	assert.Nil(t, err)
 }
