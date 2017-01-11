@@ -1,0 +1,24 @@
+# Vendor files
+vendor/*/
+
+# VIM swap files
+*.swp
+*.swo
+
+# OS-dependent
+.DS_Store
+*~
+
+# IntelliJ
+*.iml
+/.idea
+
+# Executables
+discover.exe
+discover
+
+# Git versioning file
+utils/gitver.go
+
+# Data folder
+/data
