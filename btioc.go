@@ -36,16 +36,24 @@ func (ioc *Ioc) IsRegistered(name string) bool {
 }
 
 // Registers a new object in the container.
-func Register(name string, obj interface{}) error {
-	return i.Register(name, obj)
+func Register(name string, obj interface{}) {
+	i.Register(name, obj)
 }
 
-func (ioc *Ioc) Register(name string, obj interface{}) error {
+func (ioc *Ioc) Register(name string, obj interface{}) {
+	ioc.container[name] = obj
+}
+
+// Register a new object in the container only if it hasn't been registered yet.
+func RegisterIf(name string, obj interface{}) error {
+	return i.RegisterIf(name, obj)
+}
+
+func (ioc *Ioc) RegisterIf(name string, obj interface{}) error {
 	// Check if already registered
 	if ioc.IsRegistered(name) {
 		return fmt.Errorf("'%s' is already registered in IoC container.", name)
 	}
-
 	ioc.container[name] = obj
 	return nil
 }

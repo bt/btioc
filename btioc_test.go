@@ -25,3 +25,16 @@ func TestIocRetrieve(t *testing.T) {
 	assert.Equal(t, "foobar", res)
 	assert.Nil(t, err)
 }
+
+func TestIocRetrieveIf(t *testing.T) {
+	ioc := New()
+	obj := "foobar"
+
+	// Register once first
+	ioc.Register("foo", obj)
+
+	// Cannot register again
+	err := ioc.RegisterIf("foo", obj)
+
+	assert.NotNil(t, err)
+}
