@@ -58,6 +58,15 @@ func (ioc *Ioc) RegisterIf(name string, obj interface{}) error {
 	return nil
 }
 
+// Unregisters the specified object name.
+func Unregister(name string) {
+	i.Unregister(name)
+}
+
+func (ioc *Ioc) Unregister(name string) {
+	delete(ioc.container, name)
+}
+
 // Returns the specified instance if it's in the container, otherwise return an error.
 func Retrieve(name string) (interface{}, error) {
 	return i.Retrieve(name)
